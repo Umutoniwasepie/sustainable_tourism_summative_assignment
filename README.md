@@ -1,8 +1,11 @@
 # sustainable_tourism_summative_assignment
 This Repository contains Semester 1, Year 3 Summative Assignment
+![option3](https://github.com/user-attachments/assets/446ba874-f4b6-4d22-94b7-fa1852f88718)
 
 ## Project Description
 The **Sustainable Tourism Project** is a machine learning application that predicts the environmental impact of tourism activities based on factors such as CO2 emissions, energy consumption, and tourism activity. The project is built using a **FastAPI**-based backend and leverages a **Logistic Regression** model for making predictions.
+![option2](https://github.com/user-attachments/assets/b0b6a20a-2ac8-4177-84f6-56cf4d4a0af1)
+
 
 ### Model Overview
 The machine learning model predicts the environmental impact using the following features:
