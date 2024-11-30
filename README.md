@@ -60,8 +60,8 @@ This will build the frontend and backend images according to the Dockerfile defi
 #### Option 3: Running the Frontend Locally
 
 1.Navigate to the Frontend Directory:
-    
     ```bash
+    
     cd frontend
   
 2. Install Dependencies: Run the following command to install the necessary Node.js dependencies:
@@ -96,13 +96,13 @@ Method: POST
 Description: Predict the environmental impact for a single data point (CO2 emissions, energy consumption, tourism activity).
 
 Example Request:
-    
     ```bash
+    
     curl -X POST "http://localhost:8000/predict_single/" -d '{"co2_emissions": 200, "energy_consumption": 50, "tourism_activity": 10}' -H "Content-Type: application/json"
 
 Response:
-    
     ```json
+    
     {
     "prediction": 1,
     "probability": [0.25, 0.75]
@@ -112,8 +112,8 @@ Response:
 Method: POST
 Description: Upload a CSV file for batch predictions.
 Example Request:
-    
     ```bash
+    
     curl -X POST "http://localhost:8000/predict_batch/" -F "file=@data.csv"
 
 ### /retrain_model/
@@ -122,13 +122,13 @@ Method: POST
 Description: Upload a new dataset to retrain the model.
 
 Example Request:
-    
     ```bash
+    
     curl -X POST "http://localhost:8000/retrain_model/" -F "file=@new_data.csv"
 
 Response:
-    
     ```json
+    
     {
     "message": "Model retrained successfully.",
     "evaluation": {
@@ -149,7 +149,7 @@ A video demo of the application showing how it works and how to interact with th
 
 The deployed application can be accessed at the following URL:
 
-- [Sustainable Tourism Impact API - Deployed](https://sustainable-tourism-summative.onrender.com)
+- [Sustainable Tourism - Deployed](https://sustainable-tourism-summative.onrender.com)
 
 ## Locust Load Testing Results
 
