@@ -48,10 +48,10 @@
         .carousel {
             position: relative;
             width: 100%;
-            max-width: 1000px;
-            margin: 20px auto;
+            max-width: none;
+            /*margin: 20px auto;*/
             overflow: hidden;
-            border-radius: 10px;
+            /*border-radius: 10px;*/
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
 
@@ -62,7 +62,7 @@
 
         .carousel-slide {
             min-width: 100%;
-            height: 300px;
+            height: 410px;
             background-size: cover;
             background-position: center;
         }
@@ -77,6 +77,30 @@
 
         .slide-3 {
             background-image: url('/frontend/assets/climateaction.jpg');
+        }
+
+        .carousel-buttons {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+            z-index: 10;
+        }
+
+        .carousel-buttons button {
+            background: rgba(0, 0, 0, 0.5);
+            color: #fff;
+            border: none;
+            font-size: 18px;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 50%;
+        }
+
+        .carousel-buttons button:hover {
+            background: rgba(0, 0, 0, 0.8);
         }
 
         .section {
@@ -164,7 +188,13 @@
                 <div class="carousel-slide slide-2"></div>
                 <div class="carousel-slide slide-3"></div>
             </div>
+            <div class="carousel-buttons">
+                <button id="prev">&lt;</button>
+                <button id="next">&gt;</button>
+            </div>
+            <p style="text-align: center;"> Images from pixabay - Petmal</p>
         </div>
+        
     </section>
 
     <!-- Single Prediction Section -->
@@ -215,11 +245,42 @@
         <a href="/correlation_heatmap/" target="_blank"><button>Correlation Heatmap</button></a>
     </section>
 
+<br> </br>
+<br> </br>
     <footer>
         <p>&copy; 2024 Sustainable Tourism Analysis Summative</p>
     </footer>
 
     <script>
+        const track = document.querySelector('.carousel-track');
+        const slides = Array.from(track.children);
+        const prevButton = document.getElementById('prev');
+        const nextButton = document.getElementById('next');
+        let currentIndex = 0;
+
+        function updateCarousel() {
+            const slideWidth = slides[0].getBoundingClientRect().width;
+            track.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
+        }
+
+        prevButton.addEventListener('click', () => {
+            currentIndex = (currentIndex === 0) ? slides.length - 1 : currentIndex - 1;
+            updateCarousel();
+        });
+
+        nextButton.addEventListener('click', () => {
+            currentIndex = (currentIndex === slides.length - 1) ? 0 : currentIndex + 1;
+            updateCarousel();
+        });
+
+        // Auto-slide every 5 seconds
+        setInterval(() => {
+            nextButton.click();
+        }, 5000);
+    </script>
+
+    <script>
+        
         const API_BASE_URL = "http://127.0.0.1:8081";
 
         async function predictSingle(event) {
