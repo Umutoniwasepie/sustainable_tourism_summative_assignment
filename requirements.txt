@@ -1,0 +1,13 @@
+fastapi
+uvicorn
+pandas
+scikit-learn
+matplotlib
+seaborn
+fastapi
+uvicorn
+pandas
+scikit-learn
+matplotlib
+seaborn
+python-multipart

@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sustainable Tourism Analysis</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f8fb;
+            color: #333;
+        }
+
+        header {
+            background-color: #006d77;
+            color: #ffffff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: #83c5be;
+            padding: 10px 0;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        nav a {
+            margin: 0 15px;
+            text-decoration: none;
+            color: #ffffff;
+            font-size: 16px;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        .carousel {
+            position: relative;
+            width: 100%;
+            max-width: 1000px;
+            margin: 20px auto;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .carousel-track {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .carousel-slide {
+            min-width: 100%;
+            height: 300px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .slide-1 {
+            background-image: url('/frontend/assets/greentourism.jpg');
+        }
+
+        .slide-2 {
+            background-image: url('/frontend/assets/ml.jpg');
+        }
+
+        .slide-3 {
+            background-image: url('/frontend/assets/climateaction.jpg');
+        }
+
+        .section {
+            padding: 40px 20px;
+            background: #ffffff;
+            margin: 20px auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 800px;
+        }
+
+        .section h2 {
+            color: #006d77;
+        }
+
+        footer {
+            text-align: center;
+            background-color: #006d77;
+            color: #ffffff;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        button {
+            background-color: #006d77;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #005f68;
+        }
+
+        input, label {
+            display: block;
+            margin: 10px auto;
+            text-align: left;
+        }
+
+        input[type="file"] {
+            margin: 20px auto;
+        }
+
+        #result {
+            padding: 10px;
+            margin-top: 20px;
+            border-radius: 5px;
+            font-size: 14px;
+            background-color: #eaf7f7;
+            border: 1px solid #006d77;
+            color: #333;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Sustainable Tourism Analysis</h1>
+        <p>Your tool for predicting tourism's environmental impact</p>
+    </header>
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#single-prediction">Single Prediction</a>
+        <a href="#batch-prediction">Batch Prediction</a>
+        <a href="#retraining">Retrain Model</a>
+        <a href="#visualizations">Visualizations</a>
+    </nav>
+
+    <!-- Carousel -->
+    <section id="home">
+        <div class="carousel">
+            <div class="carousel-track">
+                <div class="carousel-slide slide-1"></div>
+                <div class="carousel-slide slide-2"></div>
+                <div class="carousel-slide slide-3"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Single Prediction Section -->
+    <section id="single-prediction" class="section">
+        <h2>Single Prediction</h2>
+        <form onsubmit="predictSingle(event)">
+            <label for="co2_emissions">CO2 Emissions</label>
+            <input type="number" id="co2_emissions" required>
+            
+            <label for="energy_consumption">Energy Consumption</label>
+            <input type="number" id="energy_consumption" required>
+            
+            <label for="tourism_activity">Tourism Activity Level</label>
+            <input type="number" id="tourism_activity" required>
+            
+            <button type="submit">Predict Impact</button>
+        </form>
+        <div id="single-result" class="hidden"></div>
+    </section>
+
+    <!-- Batch Prediction Section -->
+    <section id="batch-prediction" class="section">
+        <h2>Batch Prediction</h2>
+        <form onsubmit="predictBatch(event)">
+            <label for="batch-file">Upload CSV File</label>
+            <input type="file" id="batch-file" accept=".csv" required>
+            <button type="submit">Upload and Predict</button>
+        </form>
+        <div id="batch-result" class="hidden"></div>
+    </section>
+
+    <!-- Retrain Model Section -->
+    <section id="retraining" class="section">
+        <h2>Retrain Model</h2>
+        <p>Upload new training data to retrain the model with updated information.</p>
+        <form id="retrain-form">
+            <label for="retrain-file">Upload New Training Data (CSV)</label>
+            <input type="file" id="retrain-file" accept=".csv" required>
+            <button type="button" onclick="triggerRetrain()">Retrain Model</button>
+        </form>
+        <div id="retrain-result"></div>
+    </section>
+
+    <!-- Visualizations Section -->
+    <section id="visualizations" class="section">
+        <h2>Visualizations</h2>
+        <a href="/visualizations/" target="_blank"><button>Feature Distribution Plot</button></a>
+        <a href="/correlation_heatmap/" target="_blank"><button>Correlation Heatmap</button></a>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Sustainable Tourism Analysis Summative</p>
+    </footer>
+
+    <script>
+        const API_BASE_URL = "http://127.0.0.1:8081";
+
+        async function predictSingle(event) {
+    event.preventDefault();
+
+    // Get input values from the form
+    const co2 = parseFloat(document.getElementById("co2_emissions").value);
+    const energy = parseFloat(document.getElementById("energy_consumption").value);
+    const tourism = parseFloat(document.getElementById("tourism_activity").value);
+
+    try {
+        // Make POST request to the backend API
+        const response = await fetch(
+            `${API_BASE_URL}/predict_single/?co2_emissions=${co2}&energy_consumption=${energy}&tourism_activity=${tourism}`,
+            { method: "POST" }
+        );
+
+        // Check if the response is OK
+        if (!response.ok) {
+            throw new Error("Prediction request failed");
+        }
+
+        // Parse the JSON response
+        const result = await response.json();
+        console.log("API Response:", result); // Debugging
+
+        // Update the UI with the prediction and probability
+        document.getElementById("single-result").innerText = 
+            `Prediction: ${result.prediction}, Probability: ${result.probability}`;
+        document.getElementById("single-result").classList.remove("hidden");
+    } catch (error) {
+        console.error("Error:", error); // Debugging
+        document.getElementById("single-result").innerText = "Error predicting impact.";
+        document.getElementById("single-result").classList.remove("hidden");
+    }
+}
+
+async function predictBatch(event) {
+    event.preventDefault(); // Prevent default form submission
+
+    const fileInput = document.getElementById("batch-file");
+    const batchResultElement = document.getElementById("batch-result");
+
+    // Ensure a file is selected
+    if (!fileInput.files.length) {
+        batchResultElement.innerText = "Please select a file to upload.";
+        batchResultElement.classList.remove("hidden");
+        return;
+    }
+
+    const formData = new FormData();
+    formData.append("file", fileInput.files[0]);
+
+    try {
+        // Send POST request to the backend
+        const response = await fetch(`${API_BASE_URL}/predict_batch/`, {
+            method: "POST",
+            body: formData,
+        });
+
+        // Check if the response is OK
+        if (!response.ok) {
+            throw new Error("Batch prediction request failed");
+        }
+
+        // Parse the JSON response
+        const result = await response.json();
+        console.log("Batch API Response:", result); // Debugging
+
+        // Update the UI with the batch prediction results
+        batchResultElement.innerText = `Batch Prediction Results: ${JSON.stringify(result, null, 2)}`;
+        batchResultElement.classList.remove("hidden");
+    } catch (error) {
+        console.error("Error:", error); // Debugging
+        batchResultElement.innerText = "Error predicting batch data.";
+        batchResultElement.classList.remove("hidden");
+    }
+}
+
+        async function triggerRetrain() {
+        const retrainFileInput = document.getElementById('retrain-file');
+        const retrainResultDiv = document.getElementById('retrain-result');
+
+        // Check if a file is uploaded
+        if (!retrainFileInput.files[0]) {
+            retrainResultDiv.innerText = "Please upload a CSV file.";
+            return;
+        }
+
+        // Create a FormData object to send the file
+        const formData = new FormData();
+        formData.append("file", retrainFileInput.files[0]);
+
+        try {
+            // Send the file to the retrain_model endpoint
+            const response = await fetch(`${API_BASE_URL}/retrain_model/`, {
+                method: "POST",
+                body: formData,
+            });
+
+            // Check for a successful response
+            if (!response.ok) {
+                const error = await response.json();
+                retrainResultDiv.innerText = `Retraining error: ${JSON.stringify(error)}`;
+                return;
+            }
+
+            // Process the response
+            const result = await response.json();
+            retrainResultDiv.innerText = `Retraining Successful! 
+                Accuracy: ${result.evaluation.accuracy.toFixed(2)}, 
+                Precision: ${result.evaluation.precision.toFixed(2)}, 
+                Recall: ${result.evaluation.recall.toFixed(2)}, 
+                F1 Score: ${result.evaluation.f1_score.toFixed(2)}`;
+        } catch (error) {
+            retrainResultDiv.innerText = `An error occurred: ${error.message}`;
+        }
+
+    }
+    </script>
+</body>
+</html>
