@@ -106,6 +106,7 @@ Response:
 ### /predict_batch/
 Method: POST
 Description: Upload a CSV file for batch predictions.
+
 Example Request:
     
     curl -X POST "http://localhost:8000/predict_batch/" -F "file=@data.csv"
@@ -141,7 +142,7 @@ A video demo of the application showing how it works and how to interact with th
 
 The deployed application can be accessed at the following URL:
 
-- [Sustainable Tourism - Deployed](https://sustainable-tourism-summative.onrender.com)
+- [Sustainable Tourism - Deployed](https://sustainable-tourism-summative.onrender.com/frontend/index.html)
 
 ## Locust Load Testing Results
 
