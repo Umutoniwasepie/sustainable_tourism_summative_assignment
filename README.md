@@ -61,6 +61,7 @@ This will build the frontend and backend images according to the Dockerfile defi
 
 1.Navigate to the Frontend Directory:
     ```bash
+    
     cd frontend
   
 2. Install Dependencies: Run the following command to install the necessary Node.js dependencies:
@@ -96,10 +97,12 @@ Description: Predict the environmental impact for a single data point (CO2 emiss
 
 Example Request:
     ```bash
+    
     curl -X POST "http://localhost:8000/predict_single/" -d '{"co2_emissions": 200, "energy_consumption": 50, "tourism_activity": 10}' -H "Content-Type: application/json"
 
 Response:
     ```json
+    
     {
     "prediction": 1,
     "probability": [0.25, 0.75]
@@ -110,6 +113,7 @@ Method: POST
 Description: Upload a CSV file for batch predictions.
 Example Request:
     ```bash
+    
     curl -X POST "http://localhost:8000/predict_batch/" -F "file=@data.csv"
 
 ### /retrain_model/
@@ -119,10 +123,12 @@ Description: Upload a new dataset to retrain the model.
 
 Example Request:
     ```bash
+    
     curl -X POST "http://localhost:8000/retrain_model/" -F "file=@new_data.csv"
 
 Response:
     ```json
+    
     {
     "message": "Model retrained successfully.",
     "evaluation": {
@@ -143,7 +149,7 @@ A video demo of the application showing how it works and how to interact with th
 
 The deployed application can be accessed at the following URL:
 
-- [Sustainable Tourism Impact API - Deployed](https://sustainable-tourism-summative.onrender.com)
+- [Sustainable Tourism - Deployed](https://sustainable-tourism-summative.onrender.com)
 
 ## Locust Load Testing Results
 
@@ -166,7 +172,9 @@ The application was stress-tested using **Locust** to simulate a flood of reques
 | 200   | 64.9                      |  20                        |0%       |
 | 250   | 65.9                      |  30                        |0%       |
 
-### Example on 5 users:
+### Example chart on 5 users:
+
+![5users](https://github.com/user-attachments/assets/742e2143-ee44-43e0-9b40-de1962ba1fa6)
 
 
 ### Report Access
@@ -175,6 +183,6 @@ To access a detailed report for one of the requests (e.g., the request made with
 
 - **Path**: `locust_report/report_250_users.html`
 
-This report contains additional information about the individual requests, response times, and success rates for the test scenario with 200 users. Below is the screenshoot of the chart:
+This report contains additional information about the individual requests, response times, and success rates for the test scenario with 200 users.
 
 
