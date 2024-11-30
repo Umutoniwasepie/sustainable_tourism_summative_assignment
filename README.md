@@ -74,7 +74,7 @@ This will build the frontend and backend images according to the Dockerfile defi
 
 ### Public URL
 The Sustainable Tourism API is deployed and accessible via the following public URL:
-- [Sustainable Tourism Analysis](https://sustainable-tourism.onrender.com)
+- [Sustainable Tourism Analysis](https://sustainable-tourism-summative.onrender.com/frontend/index.html)
 
 ### Docker Image
 To run the application locally with the official Docker image, use:
