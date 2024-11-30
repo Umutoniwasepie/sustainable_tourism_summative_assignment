@@ -37,8 +37,8 @@ Ensure you have the following installed on your local machine:
 #### Option 1: Using Docker Compose (Recommended)
 1. **Clone the Repository (optional)**:
    ```bash
-   git clone https://github.com/your-repo/sustainable-tourism.git
-   cd sustainable-tourism
+   git clone https://github.com/Umutoniwasepie/sustainable_tourism_summative_assignment.git
+   cd sustainable_tourism_summative_assignment
 
 2. Navigate to the Project Directory: Make sure you are in the root directory of the project, where docker-compose.yml is located.
 
@@ -46,7 +46,7 @@ Ensure you have the following installed on your local machine:
    ```bash
    docker-compose up --build
 
-This will build the frontend and backend images according to the Dockerfile definitions and start the services. The frontend will be accessible at http://localhost:8081, and the backend at http://localhost:8000.
+This will build the frontend and backend images according to the Dockerfile definitions and start the services. The frontend will be accessible at **http://localhost:8081**, and the backend at **http://localhost:8000**.
 
 #### Option 2: Running the Backend Locally
 
@@ -63,36 +63,28 @@ This will build the frontend and backend images according to the Dockerfile defi
    uvicorn main:app --host 0.0.0.0 --port 8000
    
 #### Option 3: Running the Frontend Locally
-
-1.Navigate to the Frontend Directory:
-    ```bash
-    
-    cd frontend
   
-2. Install Dependencies: Run the following command to install the necessary Node.js dependencies:
+1. Start the Frontend: Start the frontend server with:
    ```bash
-   npm install
-   
-3. Start the Frontend: Start the frontend server with:
-   ```bash
-   npm start
-   The frontend will now be accessible at http://localhost:8081.
+   uvicorn main:app --reload
+
+ 2. The frontend will now be accessible at **http://localhost:8081/frontend/index.html**.
 
 ## Deployment Package
 
 ### Public URL
 The Sustainable Tourism API is deployed and accessible via the following public URL:
-- [Sustainable Tourism Impact API](https://sustainable-tourism.onrender.com)
+- [Sustainable Tourism Analysis](https://sustainable-tourism.onrender.com)
 
 ### Docker Image
 To run the application locally with the official Docker image, use:
 1. Pull the image:
    ```bash
-   docker pull yourusername/sustainable-tourism-app:latest
+   docker pull umutoniwasepie/sustainable-tourism-app:latest
 
 2. Run the container:
    ```bash
-   docker run -p 8000:8000 yourusername/sustainable-tourism-app:latest
+   docker run -p 8000:8000 umutoniwasepie/sustainable-tourism-app:latest
 
 ## API Endpoints
 
@@ -101,12 +93,10 @@ Method: POST
 Description: Predict the environmental impact for a single data point (CO2 emissions, energy consumption, tourism activity).
 
 Example Request:
-    ```bash
     
     curl -X POST "http://localhost:8000/predict_single/" -d '{"co2_emissions": 200, "energy_consumption": 50, "tourism_activity": 10}' -H "Content-Type: application/json"
 
 Response:
-    ```json
     
     {
     "prediction": 1,
@@ -117,7 +107,6 @@ Response:
 Method: POST
 Description: Upload a CSV file for batch predictions.
 Example Request:
-    ```bash
     
     curl -X POST "http://localhost:8000/predict_batch/" -F "file=@data.csv"
 
@@ -127,20 +116,18 @@ Method: POST
 Description: Upload a new dataset to retrain the model.
 
 Example Request:
-    ```bash
     
     curl -X POST "http://localhost:8000/retrain_model/" -F "file=@new_data.csv"
 
 Response:
-    ```json
     
     {
     "message": "Model retrained successfully.",
     "evaluation": {
-        "accuracy": 0.92,
-        "precision": 0.89,
-        "recall": 0.85,
-        "f1_score": 0.87
+        "accuracy": 0.81,
+        "precision": 0.79,
+        "recall": 0.75,
+        "f1_score": 0.76
         }
     }
 
@@ -186,8 +173,6 @@ The application was stress-tested using **Locust** to simulate a flood of reques
 
 To access a detailed report for one of the requests (e.g., the request made with 200 users), you can find the Locust report in the `locust_reports` folder. Here's an example of where you can find the report:
 
-- **Path**: `locust_report/report_250_users.html`
-
-This report contains additional information about the individual requests, response times, and success rates for the test scenario with 200 users.
+- **Path**: `locust_report/report_250_users.html`, It contains additional information about the individual requests, response times, and success rates for the test scenario with 200 users.
 
 
