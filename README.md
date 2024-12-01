@@ -34,8 +34,8 @@ Ensure you have the following installed on your local machine:
 
 ### Step-by-step Setup
 
-#### Option 1: Using Docker Compose (Recommended)
-1. **Clone the Repository (optional)**:
+#### Option 1: Using Docker Compose
+1. Clone the Repository:
    ```bash
    git clone https://github.com/Umutoniwasepie/sustainable_tourism_summative_assignment.git
    cd sustainable_tourism_summative_assignment
@@ -46,34 +46,23 @@ Ensure you have the following installed on your local machine:
    ```bash
    docker-compose up --build
 
-This will build the frontend and backend images according to the Dockerfile definitions and start the services. The frontend will be accessible at **http://localhost:8081**, and the backend at **http://localhost:8000**.
+This will build the frontend and backend images according to the Dockerfile definitions and start the services. The frontend is accessible at **http://localhost:8081**, and the backend at **http://localhost:8000**.
 
 #### Option 2: Running the Backend Locally
 
-1. Navigate to the Backend Directory:
-   ```bash
-   cd backend
-
-2. Install Dependencies: Run the following command to install the necessary Python dependencies:
+1. Install Dependencies: Run the following command to install the necessary Python dependencies:
    ```bash
    pip install -r requirements.txt
 
-3. Run the Backend: Start the FastAPI server with:
+2. Run the Backend: Start the FastAPI server with:
    ```bash
    uvicorn main:app --host 0.0.0.0 --port 8000
    
-#### Option 3: Running the Frontend Locally
-  
-1. Start the Frontend: Start the frontend server with:
-   ```bash
-   uvicorn main:app --reload
-
- 2. The frontend will now be accessible at **http://localhost:8081/frontend/index.html**.
 
 ## Deployment Package
 
 ### Public URL
-The Sustainable Tourism API is deployed and accessible via the following public URL:
+The Sustainable Tourism API is deployed and accessible via the following public URL 
 - [Sustainable Tourism Analysis](https://sustainable-tourism-summative-analysis.onrender.com/frontend/index.html)
 
 ### Docker Image
@@ -136,13 +125,8 @@ Response:
 
 A video demo of the application showing how it works and how to interact with the API.
 
-- [Watch the Demo on YouTube](https://youtube.com/link_to_your_demo)
-
-## Deployed URL
-
-The deployed application can be accessed at the following URL:
-
-- [Sustainable Tourism - Deployed](https://sustainable-tourism-summative.onrender.com/frontend/index.html)
+- [Watch the Demo on YouTube](https://youtu.be/MgphsdCNIpY)
+  
 
 ## Locust Load Testing Results
 
@@ -176,4 +160,6 @@ To access a detailed report for one of the requests (e.g., the request made with
 
 - **Path**: `locust_report/report_250_users.html`, It contains additional information about the individual requests, response times, and success rates for the test scenario with 200 users.
 
+
+**Wish you all the best, ciao!!**
 
